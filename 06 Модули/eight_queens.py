@@ -12,9 +12,12 @@ def random_coords():
 
 
 count = 0
+attempt = 0
 while count < 4:
+    attempt += 1
     queens_coords = random_coords()
     if checkmate.check_eight_queens(queens_coords):
+        print(f'Попытка № {attempt}')
         print(queens_coords)
         checkmate.draw_board(queens_coords)
         count += 1
