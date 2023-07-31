@@ -16,8 +16,14 @@ list-архивы также являются свойствами экземп�
 
 class Archive:
     """Класс архивирует свойства"""
-    int_list = []
-    str_list = []
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls.int_list = []
+            cls.str_list = []
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
     def __init__(self, int_value, str_value):
         """инициализация"""
@@ -37,6 +43,11 @@ if __name__ == '__main__':
     ar2 = Archive(3, '4')
     print(f'{ar1 = }')
     print(f'{ar2 = }')
-    print(ar1)
-    help(Archive)
-    print(Archive.__doc__)
+    ar3 = Archive(5, '6')
+    print(ar1 is ar2)
+    print(f'{ar1 = }')
+    print(f'{ar2 = }')
+    print(f'{ar3 = }')
+    # print(ar1)
+    # help(Archive)
+    # print(Archive.__doc__)
