@@ -38,16 +38,27 @@ class Bird(Animal):
 
 
 class Horse(Animal):
+    count = 0
+
+    def __new__(cls, *args, **kwargs):
+        cls.count += 1
+        print(f'создал {cls.count} класс {cls}')
+        return super().__new__(cls)
+
     def __init__(self, name, age, power):
         super().__init__(name, age)
         self.power = power
+        print(f'{self.count}')
 
     def get_name(self):
-        return f'Крассавчик {super().get_name()}'
+        return f'Крассавчик {self.count} {super().get_name()}'
 
 
 if __name__ == '__main__':
     horse = Horse('Черный', 13, 'ииииииггггоооо')
     print(horse.get_name())
+    horse2 = Horse('Black', 13, 'ииииииггггоооо')
+    print(horse.get_name())
+    print(horse2.get_name())
     fish = Fish('Нео', 3, 2)
     print(fish.get_name())
