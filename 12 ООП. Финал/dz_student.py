@@ -39,6 +39,7 @@ class Student:
 
 class Subject:
     grade = Range(2, 6)
+    test_grade = Range(0, 101)
 
     def __init__(self, subject_name):
         self._name = subject_name
@@ -57,9 +58,8 @@ class Subject:
         self.grade = number
 
     def add_test_grade(self, number):
-        test_grade = Range(0, 101)
-        test_grade = number
-        self._tests.append(test_grade)
+        self.test_grade = number
+        self._tests.append(self.test_grade)
 
     @property
     def average_tests(self):
@@ -94,7 +94,7 @@ def fill_grades(student: Student):
     for subject in student.subjects.subjects:
         subject.set_grade(random.randint(2, 5))
         for _ in range(random.randrange(5, 10)):
-            subject.add_test_grade(random.randint(0, 100))
+            subject.add_test_grade(random.randint(0, 101))
 
 
 if __name__ == '__main__':
