@@ -94,7 +94,7 @@ def fill_grades(student: Student):
     for subject in student.subjects.subjects:
         subject.set_grade(random.randint(2, 5))
         for _ in range(random.randrange(5, 10)):
-            subject.add_test_grade(random.randint(0, 101))
+            subject.add_test_grade(random.randint(0, 100))
 
 
 if __name__ == '__main__':
